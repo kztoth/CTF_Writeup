@@ -8,7 +8,7 @@
 
 [Bulldog](https://github.com/kztoth/CTF_Writeup/tree/master/bulldog)
 
-LazySysAdmin
+[LazySysAdmin](https://github.com/kztoth/CTF_Writeup/tree/master/lazysysadmin)
 
 ### CTF
 
