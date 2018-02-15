@@ -6,7 +6,7 @@ Stack: 5/8
 
 Format: 5/5
 
-Heap: 0/4
+Heap: 3/4
 
 Net: 0/3
 
